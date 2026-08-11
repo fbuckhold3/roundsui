@@ -1,0 +1,260 @@
+/* ==========================================================================
+   roundsui — Shared Feedback/State components ("Ward Notes")
+   ==========================================================================
+   Loading / empty / error. This is the first component family built for
+   roundsui because it was the biggest gap found across the ecosystem: no
+   shared version existed despite 6+ near-identical hand-rolled instances
+   (milestone_module.R's busy spinner, ind.dash's startup overlay,
+   datatable_components.R's empty-table row, resident.assessment's
+   emoji-showNotification + colored-modal pattern used 5+ times, per-chart
+   plotly "no data" annotations). See roundsui's shape brief in the
+   rounds/PRODUCT.md project memory for the full inventory.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------- */
+/* Loading                                                               */
+/* -------------------------------------------------------------------- */
+
+.roundsui-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: var(--roundsui-ink-muted);
+  text-align: center;
+}
+
+.roundsui-loading.roundsui-loading--compact {
+  padding: 16px;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.roundsui-spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2.5px solid var(--roundsui-border);
+  border-top-color: var(--roundsui-accent);
+  animation: roundsui-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.roundsui-loading--compact .roundsui-spinner {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+.roundsui-loading__message {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@keyframes roundsui-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roundsui-spinner {
+    animation: none;
+    border-top-color: var(--roundsui-border);
+    opacity: 0.6;
+  }
+}
+
+/* Full-page startup overlay — generalizes ind.dash's bespoke #loading_overlay */
+.roundsui-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--roundsui-ground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.roundsui-loading-overlay[hidden],
+.roundsui-loading-overlay.roundsui-loading-overlay--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.roundsui-loading-overlay .roundsui-spinner {
+  width: 34px;
+  height: 34px;
+  border-width: 3px;
+}
+
+.roundsui-loading-overlay__brand {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--roundsui-ink);
+}
+
+.roundsui-loading-overlay__message {
+  font-size: 12.5px;
+  color: var(--roundsui-ink-muted);
+}
+
+/* -------------------------------------------------------------------- */
+/* Empty                                                                 */
+/* -------------------------------------------------------------------- */
+
+.roundsui-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--roundsui-ink-faint);
+}
+
+.roundsui-empty.roundsui-empty--compact {
+  padding: 14px;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.roundsui-empty__icon {
+  font-size: 20px;
+  color: var(--roundsui-ink-faint);
+  opacity: 0.7;
+}
+
+.roundsui-empty__message {
+  font-size: 13px;
+  color: var(--roundsui-ink-muted);
+  max-width: 42ch;
+}
+
+.roundsui-empty__action {
+  margin-top: 4px;
+}
+
+/* Single-row stand-in used inside a DT table body via
+   roundsui_empty_table() so an empty table still reads as a table, not a
+   broken one. */
+.roundsui-empty-table-row {
+  color: var(--roundsui-ink-faint);
+  font-style: italic;
+  font-size: 12.5px;
+}
+
+/* DT ships its own Bootstrap-flavored chrome with a hardcoded white
+   background - without this, any table styled with roundsui-empty-table-row
+   (or any DT table at all, in an app that loads roundsui) goes white-on-dark
+   and unreadable the moment dark mode is on. Scoped to the table itself, not
+   a global DT override beyond what's needed for theme correctness. */
+table.dataTable {
+  background-color: var(--roundsui-surface);
+  color: var(--roundsui-ink);
+  border-color: var(--roundsui-border) !important;
+}
+
+table.dataTable thead th,
+table.dataTable tbody td {
+  background-color: var(--roundsui-surface);
+  color: var(--roundsui-ink);
+  border-color: var(--roundsui-border) !important;
+}
+
+/* -------------------------------------------------------------------- */
+/* Error                                                                 */
+/* -------------------------------------------------------------------- */
+
+.roundsui-inline-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--roundsui-danger);
+  background: var(--roundsui-danger-tint);
+  border: 1px solid var(--roundsui-danger);
+  border-radius: var(--roundsui-radius-sm);
+  padding: 10px 12px;
+}
+
+.roundsui-inline-error__icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* shiny::modalDialog() has no class= argument to hook a scoping class onto
+   .modal-content (it swallows unmatched named args into `...`, silently, no
+   error), so this restyles Bootstrap's modal chrome globally instead. A
+   shared design system giving every modal in an app that loads roundsui
+   consistent chrome is the intended behavior here, not a scoping leak -
+   matches the same reasoning as the .shiny-notification rule below. */
+.modal-content {
+  border: 1px solid var(--roundsui-border);
+  border-radius: var(--roundsui-radius-md);
+  box-shadow: var(--roundsui-shadow);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--roundsui-border);
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.modal-body {
+  font-size: 13.5px;
+  color: var(--roundsui-ink);
+}
+
+/* roundsui_error_modal()'s title content is fully under our control (it's
+   literal tag content, not something needing an ancestor class), so the
+   danger coloring lives here instead of depending on a class shiny drops. */
+.roundsui-error-modal__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--roundsui-danger);
+}
+
+/* roundsui_notify() styling. Shiny's own notification chrome
+   (.shiny-notification, with a .shiny-notification-<message|warning|error>
+   modifier it applies itself) gets Ward Notes chrome globally, since a
+   shared design system restyling every notification in an app that loads
+   this file is the point, not a scoping leak. Shiny has no native
+   "success" channel, so that case is carried by an inner
+   .roundsui-notify-content--success wrapper roundsui_notify() supplies as
+   part of the notification's own content instead. */
+.shiny-notification {
+  border-radius: var(--roundsui-radius-sm);
+  border: 1px solid var(--roundsui-border);
+  box-shadow: var(--roundsui-shadow);
+  font-size: 13px;
+  color: var(--roundsui-ink);
+  background: var(--roundsui-surface);
+}
+
+.shiny-notification-warning { border-color: var(--roundsui-warning); background: var(--roundsui-warning-tint); }
+.shiny-notification-error { border-color: var(--roundsui-danger); background: var(--roundsui-danger-tint); }
+
+.roundsui-notify-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.roundsui-notify-content--success { color: var(--roundsui-success); }
+.roundsui-notify-content--warning { color: var(--roundsui-warning); }
+.roundsui-notify-content--error,
+.roundsui-notify-content--danger { color: var(--roundsui-danger); }
+.roundsui-notify-content--message { color: var(--roundsui-ink); }

@@ -1,0 +1,136 @@
+/* ==========================================================================
+   roundsui design tokens — "Ward Notes"
+   ==========================================================================
+   Restrained color strategy: neutrals + one accent. Confirmed via
+   /impeccable new-work on 2026-08-11; approved mock:
+   https://claude.ai/code/artifact/af9c7f48-607c-4982-94a4-de30485d7d86
+
+   Token names are prefixed --roundsui- so they can coexist with gmed's
+   --gmed- and --ssm- custom properties in apps that load both during
+   migration. Do not rename these without updating every consumer.
+   ========================================================================== */
+
+:root {
+  /* Ground / surface */
+  --roundsui-ground: #F6F7FA;
+  --roundsui-surface: #FFFFFF;
+  --roundsui-surface-2: #FBFBFD;
+  --roundsui-border: #E2E5EC;
+  --roundsui-border-strong: #CBD0DB;
+
+  /* Ink */
+  --roundsui-ink: #13161F;
+  --roundsui-ink-muted: #5B6472;
+  --roundsui-ink-faint: #8991A0;
+
+  /* Accent — reserved for primary actions, active nav, focus rings, and
+     chart emphasis. Never a broad surface fill (Restrained strategy). */
+  --roundsui-accent: #3355D8;
+  --roundsui-accent-ink: #FFFFFF;
+  --roundsui-accent-tint: #EAEFFC;
+  --roundsui-focus: #3355D8;
+
+  /* Status — kept conventional on purpose (the canon/standing-exit
+     direction; not reinvented even though it was on the table). */
+  --roundsui-success: #16A34A;
+  --roundsui-success-tint: #E7F6EC;
+  --roundsui-warning: #C2760A;
+  --roundsui-warning-tint: #FBF0DF;
+  --roundsui-danger: #D33A2C;
+  --roundsui-danger-tint: #FBEAE8;
+
+  /* Shape / elevation */
+  --roundsui-radius-sm: 6px;
+  --roundsui-radius-md: 10px;
+  --roundsui-shadow: 0 1px 2px rgba(20, 24, 35, 0.04), 0 8px 24px -12px rgba(20, 24, 35, 0.10);
+
+  /* Type — Inter is the intended face (matches gmed's create_gmed_theme()
+     convention); the system stack is the fallback while a page hasn't
+     loaded the web font yet, not a silent substitute. */
+  --roundsui-font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --roundsui-font-mono: ui-monospace, "SF Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+}
+
+/* OS-level dark mode. Style components through the tokens, never inside
+   this media query directly. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --roundsui-ground: #0D1015;
+    --roundsui-surface: #151920;
+    --roundsui-surface-2: #11141A;
+    --roundsui-border: #262B35;
+    --roundsui-border-strong: #333947;
+
+    --roundsui-ink: #ECEEF3;
+    --roundsui-ink-muted: #9BA3B3;
+    --roundsui-ink-faint: #6B7385;
+
+    --roundsui-accent: #6E8AFF;
+    --roundsui-accent-ink: #0D1015;
+    --roundsui-accent-tint: #1B2136;
+    --roundsui-focus: #6E8AFF;
+
+    --roundsui-success: #3FCB74;
+    --roundsui-success-tint: #142A1D;
+    --roundsui-warning: #E7A23D;
+    --roundsui-warning-tint: #2E2413;
+    --roundsui-danger: #F0685C;
+    --roundsui-danger-tint: #2E1917;
+
+    --roundsui-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Explicit app-level theme toggle wins over the OS preference in both
+   directions — matches the approved mock's toggle behavior. */
+:root[data-theme="dark"] {
+  --roundsui-ground: #0D1015;
+  --roundsui-surface: #151920;
+  --roundsui-surface-2: #11141A;
+  --roundsui-border: #262B35;
+  --roundsui-border-strong: #333947;
+
+  --roundsui-ink: #ECEEF3;
+  --roundsui-ink-muted: #9BA3B3;
+  --roundsui-ink-faint: #6B7385;
+
+  --roundsui-accent: #6E8AFF;
+  --roundsui-accent-ink: #0D1015;
+  --roundsui-accent-tint: #1B2136;
+  --roundsui-focus: #6E8AFF;
+
+  --roundsui-success: #3FCB74;
+  --roundsui-success-tint: #142A1D;
+  --roundsui-warning: #E7A23D;
+  --roundsui-warning-tint: #2E2413;
+  --roundsui-danger: #F0685C;
+  --roundsui-danger-tint: #2E1917;
+
+  --roundsui-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme="light"] {
+  --roundsui-ground: #F6F7FA;
+  --roundsui-surface: #FFFFFF;
+  --roundsui-surface-2: #FBFBFD;
+  --roundsui-border: #E2E5EC;
+  --roundsui-border-strong: #CBD0DB;
+
+  --roundsui-ink: #13161F;
+  --roundsui-ink-muted: #5B6472;
+  --roundsui-ink-faint: #8991A0;
+
+  --roundsui-accent: #3355D8;
+  --roundsui-accent-ink: #FFFFFF;
+  --roundsui-accent-tint: #EAEFFC;
+  --roundsui-focus: #3355D8;
+
+  --roundsui-success: #16A34A;
+  --roundsui-success-tint: #E7F6EC;
+  --roundsui-warning: #C2760A;
+  --roundsui-warning-tint: #FBF0DF;
+  --roundsui-danger: #D33A2C;
+  --roundsui-danger-tint: #FBEAE8;
+
+  --roundsui-shadow: 0 1px 2px rgba(20, 24, 35, 0.04), 0 8px 24px -12px rgba(20, 24, 35, 0.10);
+}

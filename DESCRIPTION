@@ -1,0 +1,20 @@
+Package: roundsui
+Title: Shared UI Components and Design Tokens for the Rounds Ecosystem
+Version: 0.0.0.9000
+Authors@R:
+    person("Fred", "Buckhold", , "fbuckhold3@icloud.com", role = c("aut", "cre"))
+Description: Shared Shiny UI components, design tokens, and theming
+    ("Ward Notes") for the rounds ecosystem of internal medicine GME
+    applications, independent of any one app's REDCap data-loading layer.
+    Component families: shared feedback/state (loading, empty, error),
+    shell/navigation, data-visualization wrappers, and data-entry patterns.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0
+Imports:
+    shiny,
+    bslib
+Suggests:
+    plotly,
+    DT
