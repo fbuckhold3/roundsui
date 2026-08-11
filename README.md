@@ -52,7 +52,10 @@ Priority order, per the shape brief this package was planned from (see `rounds/P
    - `roundsui_page()` (generalizes `gmed_page()`)
    - `roundsui_nav_blocks()` (generalizes `gmed_nav_blocks()`; genuinely responsive grid, Font Awesome instead of Bootstrap Icons, no colored border-left, keyboard-operable)
    - `gmed_app_header()` deliberately not ported — no real consumer uses it anymore
-3. **Data-Visualization wrappers** — consistent no-data state, legend/tooltip/status-color conventions over the existing plotly/DT investment
+3. **Data-Visualization wrappers** — ✅ shipped
+   - `roundsui_status_badge()` (pill/dot variants; consolidates `gmed_status_badge()` + `create_status_indicator()`)
+   - `roundsui_datatable()` (consolidates 4 overlapping DT constructors, including a dead-alias bug)
+   - `roundsui_plotly_layout()` (new — consistent typography/gridline/hover chrome over existing chart logic)
 4. **Data-Entry patterns** — the edit/view/compare 3-mode pattern (`gmed::mod_career_goals`) and overwrite/additive submission split, generalized
 
 ## Design tokens ("Ward Notes")

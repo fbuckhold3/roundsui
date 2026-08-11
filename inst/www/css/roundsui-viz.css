@@ -1,0 +1,125 @@
+/* ==========================================================================
+   roundsui — Data-Visualization wrappers ("Ward Notes")
+   ==========================================================================
+   Chrome for roundsui_status_badge(), roundsui_datatable(), and the plotly
+   figures roundsui_plotly_layout() themes. Chart-type logic (spider plots,
+   stacked bars) stays in gmed/app code - this is wrapper chrome only.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------- */
+/* Status                                                                */
+/* -------------------------------------------------------------------- */
+
+.roundsui-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  line-height: 1.6;
+}
+
+.roundsui-status-badge--success { background: var(--roundsui-success-tint); color: var(--roundsui-success); }
+.roundsui-status-badge--warning { background: var(--roundsui-warning-tint); color: var(--roundsui-warning); }
+.roundsui-status-badge--danger { background: var(--roundsui-danger-tint); color: var(--roundsui-danger); }
+.roundsui-status-badge--neutral { background: var(--roundsui-surface-2); color: var(--roundsui-ink-faint); }
+
+.roundsui-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.roundsui-status-dot--success { color: var(--roundsui-success); }
+.roundsui-status-dot--warning { color: var(--roundsui-warning); }
+.roundsui-status-dot--danger { color: var(--roundsui-danger); }
+.roundsui-status-dot--neutral { color: var(--roundsui-ink-faint); }
+
+.roundsui-status-dot__label {
+  color: var(--roundsui-ink);
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------- */
+/* Table                                                                 */
+/* -------------------------------------------------------------------- */
+
+table.roundsui-datatable {
+  width: 100%;
+  font-size: 13px;
+  color: var(--roundsui-ink);
+  border-collapse: collapse;
+}
+
+table.roundsui-datatable thead th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--roundsui-ink-faint);
+  font-weight: 650;
+  border-bottom: 1px solid var(--roundsui-border) !important;
+  background: var(--roundsui-surface-2);
+}
+
+table.roundsui-datatable.stripe tbody tr.odd { background: var(--roundsui-surface); }
+table.roundsui-datatable.stripe tbody tr.even { background: var(--roundsui-surface-2); }
+
+table.roundsui-datatable.hover tbody tr:hover {
+  background: var(--roundsui-accent-tint) !important;
+}
+
+table.roundsui-datatable tbody tr.roundsui-row-selected {
+  background: var(--roundsui-accent-tint) !important;
+  outline: 1px solid var(--roundsui-accent);
+  outline-offset: -1px;
+}
+
+table.roundsui-datatable td, table.roundsui-datatable th {
+  border-color: var(--roundsui-border) !important;
+  padding: 9px 12px;
+}
+
+.roundsui-dt-null {
+  color: var(--roundsui-ink-faint);
+  font-style: italic;
+}
+
+/* DT's own chrome (search box, pagination, length menu) - restyled to
+   match, since it renders outside the <table> element itself. */
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid var(--roundsui-border-strong);
+  border-radius: var(--roundsui-radius-sm);
+  background: var(--roundsui-surface);
+  color: var(--roundsui-ink);
+  padding: 4px 8px;
+}
+
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter label {
+  color: var(--roundsui-ink-muted);
+  font-size: 12.5px;
+}
+
+.dataTables_wrapper .paginate_button {
+  border-radius: var(--roundsui-radius-sm) !important;
+  color: var(--roundsui-ink-muted) !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+}
+
+.dataTables_wrapper .paginate_button.current {
+  background: var(--roundsui-accent) !important;
+  border-color: var(--roundsui-accent) !important;
+  color: var(--roundsui-accent-ink) !important;
+}
+
+.dataTables_wrapper .paginate_button:hover:not(.current) {
+  background: var(--roundsui-surface-2) !important;
+  border-color: var(--roundsui-border) !important;
+  color: var(--roundsui-ink) !important;
+}

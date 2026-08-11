@@ -43,6 +43,10 @@ load_roundsui_styles <- function() {
     shiny::tags$link(
       rel = "stylesheet", type = "text/css",
       href = "roundsui/css/roundsui-components.css"
+    ),
+    shiny::tags$link(
+      rel = "stylesheet", type = "text/css",
+      href = "roundsui/css/roundsui-viz.css"
     )
   )
 }
