@@ -11,7 +11,8 @@ A \code{shiny::tagList()} of \verb{<link>} tags.
 }
 \description{
 Registers the roundsui resource path and returns the \verb{<link>} tags
-needed to load roundsui's design tokens and component styles. Call once
+needed to load roundsui's design tokens, shell/navigation, and
+component styles. Call once
 near the top of your app's UI. Safe to load alongside
 \code{gmed::load_gmed_styles()} during migration — roundsui's tokens are
 prefixed \code{--roundsui-*}, so they don't collide with gmed's

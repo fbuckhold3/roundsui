@@ -17,4 +17,5 @@ Imports:
     bslib
 Suggests:
     plotly,
-    DT
+    DT,
+    shinyjs

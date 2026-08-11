@@ -1,0 +1,113 @@
+/* ==========================================================================
+   roundsui — Shell & Navigation ("Ward Notes")
+   ==========================================================================
+   Generalizes gmed_page()/gmed_nav_blocks()'s thin-shell, server-driven-nav
+   pattern. Two things this fixes over the current gmed CSS
+   (gmed-components.css / gmed-themes.css):
+
+   1. Responsive grid via auto-fit/minmax instead of a fixed column count -
+      ccc.dashboard and ind.dash each currently !important-override the
+      same 3/4-column grid locally (byte-for-byte duplicated), because the
+      shared version wasn't actually responsive to arbitrary widths.
+   2. No colored border-left on tiles - gmed's .gmed-nav-block used a 5px
+      var(--gmed-secondary) left border; that's a named craft-floor refusal
+      here, not a style choice, so this uses a hairline all-around border
+      plus an accent-colored icon instead.
+   ========================================================================== */
+
+.roundsui-page-header {
+  margin-bottom: 20px;
+}
+
+.roundsui-page-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--roundsui-ink);
+}
+
+.roundsui-page-header p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--roundsui-ink-muted);
+}
+
+/* Genuinely responsive - no per-app column-count overrides needed. */
+.roundsui-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.roundsui-nav-block {
+  background: var(--roundsui-surface);
+  border: 1px solid var(--roundsui-border);
+  border-radius: var(--roundsui-radius-md);
+  box-shadow: var(--roundsui-shadow);
+  padding: 32px 24px;
+  min-height: 200px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.roundsui-nav-block:hover {
+  transform: translateY(-2px);
+  border-color: var(--roundsui-accent);
+}
+
+.roundsui-nav-block:focus-visible {
+  outline: 2px solid var(--roundsui-focus);
+  outline-offset: 2px;
+  border-color: var(--roundsui-accent);
+}
+
+.roundsui-nav-block__icon {
+  font-size: 2.6rem;
+  color: var(--roundsui-accent);
+  margin-bottom: 16px;
+}
+
+.roundsui-nav-block__label {
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--roundsui-ink);
+  margin-bottom: 6px;
+}
+
+.roundsui-nav-block__desc {
+  font-size: 0.82rem;
+  color: var(--roundsui-ink-muted);
+  line-height: 1.45;
+  max-width: 30ch;
+}
+
+.roundsui-nav-block--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.roundsui-nav-block--disabled:hover {
+  transform: none;
+  border-color: var(--roundsui-border);
+}
+
+.roundsui-nav-block--disabled .roundsui-nav-block__icon {
+  color: var(--roundsui-ink-faint);
+}
+
+.roundsui-nav-block__soon {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.68rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--roundsui-ink-faint);
+}

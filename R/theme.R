@@ -9,7 +9,8 @@ NULL
 #' Load roundsui CSS
 #'
 #' Registers the roundsui resource path and returns the \verb{<link>} tags
-#' needed to load roundsui's design tokens and component styles. Call once
+#' needed to load roundsui's design tokens, shell/navigation, and
+#' component styles. Call once
 #' near the top of your app's UI. Safe to load alongside
 #' \code{gmed::load_gmed_styles()} during migration — roundsui's tokens are
 #' prefixed \code{--roundsui-*}, so they don't collide with gmed's
@@ -34,6 +35,10 @@ load_roundsui_styles <- function() {
     shiny::tags$link(
       rel = "stylesheet", type = "text/css",
       href = "roundsui/css/roundsui-tokens.css"
+    ),
+    shiny::tags$link(
+      rel = "stylesheet", type = "text/css",
+      href = "roundsui/css/roundsui-shell.css"
     ),
     shiny::tags$link(
       rel = "stylesheet", type = "text/css",

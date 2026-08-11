@@ -48,7 +48,10 @@ Priority order, per the shape brief this package was planned from (see `rounds/P
    - `roundsui_loading_state()`, `roundsui_loading_overlay()`
    - `roundsui_empty_state()`, `roundsui_empty_table()`, `roundsui_empty_chart_annotation()`
    - `roundsui_inline_error()`, `roundsui_error_modal()`, `roundsui_notify()`
-2. **Shell & Navigation** — generalizing `gmed_page()` / `gmed_nav_blocks()`'s thin-shell, server-driven-nav pattern with a real responsive spec
+2. **Shell & Navigation** — ✅ shipped
+   - `roundsui_page()` (generalizes `gmed_page()`)
+   - `roundsui_nav_blocks()` (generalizes `gmed_nav_blocks()`; genuinely responsive grid, Font Awesome instead of Bootstrap Icons, no colored border-left, keyboard-operable)
+   - `gmed_app_header()` deliberately not ported — no real consumer uses it anymore
 3. **Data-Visualization wrappers** — consistent no-data state, legend/tooltip/status-color conventions over the existing plotly/DT investment
 4. **Data-Entry patterns** — the edit/view/compare 3-mode pattern (`gmed::mod_career_goals`) and overwrite/additive submission split, generalized
 
