@@ -1,0 +1,159 @@
+/* ==========================================================================
+   roundsui — Data-Entry patterns ("Ward Notes")
+   ==========================================================================
+   Chrome for roundsui_choice_input(), roundsui_confirm_unchanged(),
+   roundsui_filter_chips(), and roundsui_validation_summary(). Buttons here
+   deliberately use plain Bootstrap classes (btn-success/btn-primary) rather
+   than roundsui-specific ones - create_roundsui_theme() already maps
+   success/primary to the Ward Notes tokens via bslib, so they pick up the
+   right colors automatically and stay consistent with every other button
+   in a roundsui-themed app.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------- */
+/* Choice input                                                          */
+/* -------------------------------------------------------------------- */
+
+.roundsui-choice-input {
+  margin-bottom: 4px;
+}
+
+.roundsui-choice-input__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--roundsui-ink);
+  margin-bottom: 8px;
+}
+
+.roundsui-choice-input__empty {
+  color: var(--roundsui-ink-faint);
+  font-size: 12.5px;
+  font-style: italic;
+}
+
+.roundsui-choice-input .shiny-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roundsui-choice-input .checkbox label,
+.roundsui-choice-input .radio label {
+  font-size: 13.5px;
+  color: var(--roundsui-ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* -------------------------------------------------------------------- */
+/* Confirm unchanged                                                     */
+/* -------------------------------------------------------------------- */
+
+.roundsui-confirm-unchanged {
+  background: var(--roundsui-accent-tint);
+  border: 1px solid var(--roundsui-border);
+  border-radius: var(--roundsui-radius-md);
+  padding: 16px 18px;
+}
+
+.roundsui-confirm-unchanged__question {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--roundsui-ink);
+  margin: 0 0 12px;
+}
+
+.roundsui-confirm-unchanged__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------------- */
+/* Filter chips                                                          */
+/* -------------------------------------------------------------------- */
+
+.roundsui-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.roundsui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--roundsui-ink-muted);
+  background: var(--roundsui-surface);
+  border: 1px solid var(--roundsui-border-strong);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.roundsui-chip:hover {
+  border-color: var(--roundsui-accent);
+  color: var(--roundsui-ink);
+}
+
+.roundsui-chip--active {
+  background: var(--roundsui-accent);
+  border-color: var(--roundsui-accent);
+  color: var(--roundsui-accent-ink);
+}
+
+.roundsui-chip__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  background: var(--roundsui-surface-2);
+  color: var(--roundsui-ink-muted);
+}
+
+.roundsui-chip--active .roundsui-chip__count {
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--roundsui-accent-ink);
+}
+
+/* -------------------------------------------------------------------- */
+/* Validation summary                                                    */
+/* -------------------------------------------------------------------- */
+
+.roundsui-validation-summary {
+  background: var(--roundsui-danger-tint);
+  border: 1px solid var(--roundsui-danger);
+  border-radius: var(--roundsui-radius-sm);
+  padding: 12px 16px;
+}
+
+.roundsui-validation-summary__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--roundsui-danger);
+}
+
+.roundsui-validation-summary__list {
+  margin: 8px 0 0;
+  padding-left: 22px;
+  font-size: 13px;
+  color: var(--roundsui-ink);
+}
+
+.roundsui-validation-summary__list li {
+  margin-bottom: 3px;
+}

@@ -56,7 +56,14 @@ Priority order, per the shape brief this package was planned from (see `rounds/P
    - `roundsui_status_badge()` (pill/dot variants; consolidates `gmed_status_badge()` + `create_status_indicator()`)
    - `roundsui_datatable()` (consolidates 4 overlapping DT constructors, including a dead-alias bug)
    - `roundsui_plotly_layout()` (new — consistent typography/gridline/hover chrome over existing chart logic)
-4. **Data-Entry patterns** — the edit/view/compare 3-mode pattern (`gmed::mod_career_goals`) and overwrite/additive submission split, generalized
+4. **Data-Entry patterns** — ✅ shipped
+   - `roundsui_choice_input()` (REDCap choice-string driven, auto-detected "Other" reveal)
+   - `roundsui_confirm_unchanged()` (the `mod_career_goals` Yes/No pattern, generalized)
+   - `roundsui_filter_chips()` (generalizes `mod_eval_feedback`'s hand-styled chip filters)
+   - `roundsui_validation_summary()` (structured missing-fields display)
+   - Deliberately NOT ported: `submit_overwrite_data()`/`submit_additive_data()` and per-field validation logic — both stay a data-layer/app concern, never roundsui's, by architecture
+
+All four families from the original shape brief are now shipped. Next scope (not yet started): a real integration pass against one of the actual consumer apps, and then a migration plan across the rest.
 
 ## Design tokens ("Ward Notes")
 
