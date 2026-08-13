@@ -111,3 +111,68 @@
   letter-spacing: 0.05em;
   color: var(--roundsui-ink-faint);
 }
+
+/* -------------------------------------------------------------------- */
+/* Card                                                                  */
+/* -------------------------------------------------------------------- */
+
+.roundsui-card {
+  background: var(--roundsui-surface);
+  border: 1px solid var(--roundsui-border);
+  border-radius: var(--roundsui-radius-md);
+  box-shadow: var(--roundsui-shadow);
+  overflow: hidden;
+}
+
+.roundsui-card__header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--roundsui-border);
+}
+
+.roundsui-card__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--roundsui-ink);
+}
+
+.roundsui-card__body {
+  padding: 18px;
+}
+
+/* -------------------------------------------------------------------- */
+/* Resident panel                                                        */
+/* -------------------------------------------------------------------- */
+
+.roundsui-resident-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  background: var(--roundsui-surface);
+  border: 1px solid var(--roundsui-border);
+  border-radius: var(--roundsui-radius-md);
+  box-shadow: var(--roundsui-shadow);
+  padding: 14px 18px;
+}
+
+.roundsui-resident-panel__field {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.roundsui-resident-panel__label {
+  font-weight: 650;
+  color: var(--roundsui-ink-faint);
+  text-transform: uppercase;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+}
+
+.roundsui-resident-panel__value {
+  color: var(--roundsui-ink);
+  font-weight: 500;
+}

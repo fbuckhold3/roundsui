@@ -33,7 +33,7 @@ A shiny UI element.
 A colored status indicator, in two display variants. Replaces both
 \code{gmed::gmed_status_badge()} (text pill) and
 \code{gmed:::create_status_indicator()} (small dot + glyph, which used
-hardcoded hex colors and raw unicode characters GOaO0Bc97PeGPn4VgVJdRDt3rebK85VE-3\code{○}/
+hardcoded hex colors and raw unicode characters YMeg91vFkpEZKtAFoA0vIFvW35sDN3jD-3\code{○}/
 \code{⏳} instead of a real icon).
 }
 \examples{

@@ -184,3 +184,111 @@ roundsui_nav_blocks <- function(blocks,
     )
   )
 }
+
+# ---- Card & resident panel ------------------------------------------------
+# Added for the gmed-depends-on-roundsui migration: gmed::gmed_card() (25+
+# call sites in imslu.ccc.dashboard alone) and gmed::gmed_resident_panel()
+# had no roundsui equivalent through families 1-4. Both are general-purpose
+# structural surfaces, same family as the page shell and nav grid above.
+
+#' roundsui Card
+#'
+#' A generic card container, generalizing \code{gmed::gmed_card()} - the
+#' single most-used layout primitive in the apps that call \code{gmed}
+#' directly (25+ call sites in \code{imslu.ccc.dashboard} alone). Same
+#' signature shape as the original for a close-to-drop-in swap: optional
+#' title header, \code{...} content in the body.
+#'
+#' @param title Optional character card title, shown in a header region
+#'   above the body.
+#' @param ... Card body content.
+#' @param class Additional CSS classes on the outer card element.
+#' @param style Additional inline style on the outer card element.
+#' @param header_class Additional CSS classes on the header region (only
+#'   rendered when \code{title} is supplied).
+#' @param body_class Additional CSS classes on the body region.
+#'
+#' @return A shiny UI element.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' roundsui_card(title = "Review Progress", uiOutput("review_stats"))
+#' roundsui_card(shiny::p("No title, just content."))
+#' }
+roundsui_card <- function(title = NULL, ...,
+                           class = "", style = NULL,
+                           header_class = "", body_class = "") {
+  if (!requireNamespace("shiny", quietly = TRUE)) {
+    stop("Package 'shiny' is required for UI components")
+  }
+  shiny::div(
+    class = trimws(paste("roundsui-card", class)),
+    style = style,
+    if (!is.null(title)) {
+      shiny::div(
+        class = trimws(paste("roundsui-card__header", header_class)),
+        shiny::h3(class = "roundsui-card__title", title)
+      )
+    },
+    shiny::div(
+      class = trimws(paste("roundsui-card__body", body_class)),
+      ...
+    )
+  )
+}
+
+#' roundsui Resident Panel
+#'
+#' A horizontal info strip, generalizing \code{gmed::gmed_resident_panel()}
+#' - same named fields (for a close-to-drop-in swap), rendered as Ward
+#' Notes labeled chips instead of a fixed 12-column Bootstrap grid tuned
+#' to exactly 5 fields (the original hardcodes column widths - 3/2/3/3/1 -
+#' that only add up to 12 when all five fields are present; supplying
+#' fewer leaves the row visibly unbalanced). This version's chips just
+#' wrap naturally regardless of how many are supplied.
+#'
+#' @param resident_name,level,period,coach,access_code Optional character
+#'   values; each renders as one labeled chip when non-\code{NULL}, in
+#'   this order.
+#' @param class Additional CSS classes on the outer element.
+#' @param style Additional inline style on the outer element.
+#'
+#' @return A shiny UI element.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' roundsui_resident_panel(
+#'   resident_name = "R. Ahmadi", level = "PGY-2", coach = "Dr. Bastin"
+#' )
+#' }
+roundsui_resident_panel <- function(resident_name = NULL, level = NULL,
+                                     period = NULL, coach = NULL,
+                                     access_code = NULL,
+                                     class = "", style = NULL) {
+  if (!requireNamespace("shiny", quietly = TRUE)) {
+    stop("Package 'shiny' is required for UI components")
+  }
+
+  field <- function(label, value) {
+    if (is.null(value) || (is.character(value) && !nzchar(value)) || is.na(value)) {
+      return(NULL)
+    }
+    shiny::div(
+      class = "roundsui-resident-panel__field",
+      shiny::span(class = "roundsui-resident-panel__label", label),
+      shiny::span(class = "roundsui-resident-panel__value", value)
+    )
+  }
+
+  shiny::div(
+    class = trimws(paste("roundsui-resident-panel", class)),
+    style = style,
+    field("Resident", resident_name),
+    field("Level", level),
+    field("Period", period),
+    field("Coach", coach),
+    field("Code", access_code)
+  )
+}

@@ -81,7 +81,37 @@ ui <- roundsui::roundsui_page(
         input_id = "nav_block"
       )
     ),
-    div(class = "last-click", textOutput("last_click", inline = TRUE))
+    div(class = "last-click", textOutput("last_click", inline = TRUE)),
+
+    h2(style = "font-size: 14px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.04em; color: var(--roundsui-ink-muted); margin: 32px 0 4px;",
+       "Card & Resident Panel"),
+    p(style = "font-size: 12.5px; color: var(--roundsui-ink-faint); margin: 0 0 12px;",
+      "roundsui_card() and roundsui_resident_panel() - generalize gmed_card() (25+ call sites in ccc.dashboard) and gmed_resident_panel()."),
+
+    roundsui::roundsui_resident_panel(
+      resident_name = "R. Ahmadi",
+      level = "PGY-2",
+      coach = "Dr. Bastin"
+    ),
+
+    div(
+      style = "display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px;",
+      roundsui::roundsui_card(
+        title = "Review Progress",
+        p(style = "margin: 0; color: var(--roundsui-ink-muted); font-size: 13px;",
+          "18 of 25 assessments complete this year.")
+      ),
+      roundsui::roundsui_card(
+        p(style = "margin: 0; color: var(--roundsui-ink-muted); font-size: 13px;",
+          "A card with no title - just body content.")
+      ),
+      roundsui::roundsui_card(
+        title = "Resident Panel, Partial Fields",
+        p(style = "margin: 0 0 10px; color: var(--roundsui-ink-faint); font-size: 12px;",
+          "Only 2 of 5 fields supplied - wraps naturally instead of leaving a fixed 12-col grid unbalanced:"),
+        roundsui::roundsui_resident_panel(resident_name = "J. Okafor", period = "Period 2")
+      )
+    )
   ),
   tags$script(HTML("
     Shiny.addCustomMessageHandler('roundsui-set-frame-width', function(px) {
